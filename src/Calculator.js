@@ -11,6 +11,7 @@ function Calculator() {
 
   const style = {
     fontWeight: 'bold',
+    backgroundColor: 'aliceblue',
   }
 
   function addWeek(i) {
@@ -24,14 +25,20 @@ function Calculator() {
   return (
     <>
       <form>
-        <label>CC</label>
-        <input type="text" onChange={ (e) => { setCc(e.target.value); } } defaultValue={cc} />
+        <div className="form-group">
+          <label>CC</label>
+          <input type="text" className="form-control" onChange={ (e) => { setCc(e.target.value); } } defaultValue={cc} />
+        </div>
 
-        <label>initDate</label>
-        <input type="text" onChange={ (e) => { setInitDate(e.target.value); } } defaultValue={initDate} />
+        <div className="form-group">
+          <label>initDate</label>
+          <input type="text" className="form-control" onChange={ (e) => { setInitDate(e.target.value); } } defaultValue={initDate} />
+        </div>
 
-        <label>totalWeeks</label>
-        <input type="number" onChange={ (e) => { setTotalWeeks(Math.min(12, parseInt(e.target.value))); } } defaultValue={totalWeeks} />
+        <div className="form-group">
+          <label>totalWeeks</label>
+          <input type="number" className="form-control" onChange={ (e) => { setTotalWeeks(Math.min(12, parseInt(e.target.value))); } } value={totalWeeks} />
+        </div>
       </form>
       <div>
         <table className="table">
@@ -45,8 +52,8 @@ function Calculator() {
           </thead>
           <tbody>
             { [...Array(totalWeeks)].map((value, i) => (
-              <tr key={i}>
-                <td style={ currentWeek(i) ? style : {} }>Week {i + 1} ({ addWeek(i).format('DD-MM-YYYY') })</td>
+              <tr key={i} style={ currentWeek(i) ? style : {} }>
+                <td>Week {i + 1} ({ addWeek(i).format('DD-MM-YYYY') })</td>
                 <td>{(bioMix[i] * cc) / 1000} cc.</td>
                 <td>{(bioBloom[i] * cc) / 1000} cc.</td>
                 <td>{(topMax[i] * cc) / 1000} cc.</td>
