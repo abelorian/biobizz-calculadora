@@ -1,9 +1,21 @@
 import { useState } from 'react';
 
 function Calculator() {
+  const [initDate, setInitDate] = useState('2022-09-04Z-04:00');
   const [cc, setCc] = useState(2000);
   const [week, setWeek] = useState(2);
   const bioMix = [0, 2, 2, 2, 3, 3, 4, 4, 4, 4, 0, 0];
+  const bioBloom = [0, 0, 1, 2, 2, 3, 3, 4, 4, 4, 0, 0];
+  const topMax = [0, 0, 1, 1, 1, 1, 1, 4, 4, 4, 0, 0];
+  const fem = 12;
+  const auto = 9;
+
+  function addWeek(i) {
+    let thisWeek = new Date(initDate);
+    const date = thisWeek.setDate(thisWeek.getDate() + (i * 7));
+    return new Date(date).toLocaleString('es-CL');
+  }
+
   return (
     <>
       <form>
@@ -11,40 +23,27 @@ function Calculator() {
         <input type="text" onChange={ (e) => { setCc(e.target.value); } } defaultValue={cc} />
 
         <label>Week</label>
-        <input type="text" onChange={ (e) => { setWeek(e.target.value); } } defaultValue={week} />
-
-        <label>{cc * week}</label>
-        <label>{bioMix}</label>
+        <input type="text" onChange={ (e) => { setInitDate(e.target.value); } } defaultValue={initDate} />
       </form>
       <div>
         <table className="table">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th scope="col">bioMix</th>
+              <th scope="col">bioBloom</th>
+              <th scope="col">topMax</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            { [...Array(auto)].map((value, i) => (
+              <tr key={i}>
+                <td>Week {i + 1} ({addWeek(i)})</td>
+                <td>{(bioMix[i] * cc) / 1000} cc.</td>
+                <td>{(bioBloom[i] * cc) / 1000} cc.</td>
+                <td>{(topMax[i] * cc) / 1000} cc.</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
