@@ -2,17 +2,22 @@ import { useState } from 'react';
 import moment from 'moment';
 
 function Calculator() {
-  const [initDate, setInitDate] = useState('04-09-2022');
+  const [initDate, setInitDate] = useState('05-09-2022');
   const [cc, setCc] = useState(2000);
-  const [totalWeeks, setTotalWeeks] = useState(12);
-  const bioMix = [0, 2, 2, 2, 3, 3, 4, 4, 4, 4, 0, 0];
-  const bioBloom = [0, 0, 1, 2, 2, 3, 3, 4, 4, 4, 0, 0];
-  const topMax = [0, 0, 1, 1, 1, 1, 1, 4, 4, 4, 0, 0];
+  const [totalWeeks, setTotalWeeks] = useState(9);
+
+  const bioMix12 = [0, 2, 2, 2, 3, 3, 4, 4, 4, 4, 0, 0];
+  const bioBloom12 = [0, 0, 1, 2, 2, 3, 3, 4, 4, 4, 0, 0];
+  const topMax12 = [0, 0, 1, 1, 1, 1, 1, 4, 4, 4, 0, 0];
+
+  const bioMix9 = [1, 1, 2, 3, 3, 4, 4, 3, 0];
+  const bioBloom9 = [0, 1, 2, 2, 3, 3, 4, 3, 0];
+  const topMax9 = [0, 1, 1, 1, 1, 4, 4, 3, 0];
 
   const style = {
     fontWeight: 'bold',
     backgroundColor: 'aliceblue',
-  }
+  };
 
   function addWeek(i) {
     return moment(initDate, 'DD-MM-YYYY').add(i, 'week');
@@ -27,7 +32,7 @@ function Calculator() {
       <form>
         <div className="form-group">
           <label>CC</label>
-          <input type="text" className="form-control" onChange={ (e) => { setCc(e.target.value); } } defaultValue={cc} />
+          <input type="number" className="form-control" onChange={ (e) => { setCc(e.target.value); } } defaultValue={cc} />
         </div>
 
         <div className="form-group">
@@ -37,7 +42,10 @@ function Calculator() {
 
         <div className="form-group">
           <label>totalWeeks</label>
-          <input type="number" className="form-control" onChange={ (e) => { setTotalWeeks(Math.min(12, parseInt(e.target.value))); } } value={totalWeeks} />
+          <select className="form-control" onChange={ (e) => { setTotalWeeks(parseInt(e.target.value)); } } value={totalWeeks}>
+            <option value="9">9 weeks (auto)</option>
+            <option value="12">12 weeks (fem)</option>
+          </select>
         </div>
       </form>
       <div>
@@ -54,9 +62,9 @@ function Calculator() {
             { [...Array(totalWeeks)].map((value, i) => (
               <tr key={i} style={ currentWeek(i) ? style : {} }>
                 <td>Week {i + 1} ({ addWeek(i).format('DD-MM-YYYY') })</td>
-                <td>{(bioMix[i] * cc) / 1000} cc.</td>
-                <td>{(bioBloom[i] * cc) / 1000} cc.</td>
-                <td>{(topMax[i] * cc) / 1000} cc.</td>
+                <td>{((totalWeeks === 9 ? bioMix9[i] : bioMix12[i]) * cc) / 1000} cc.</td>
+                <td>{((totalWeeks === 9 ? bioBloom9[i] : bioBloom12[i]) * cc) / 1000} cc.</td>
+                <td>{((totalWeeks === 9 ? topMax9[i] : topMax12[i]) * cc) / 1000} cc.</td>
               </tr>
             ))}
           </tbody>
