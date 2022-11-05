@@ -27,6 +27,12 @@ function Calculator() {
     return moment().isBetween(addWeek(i), addWeek(i).endOf('week'));
   }
 
+  function daysToNow() {
+    const init = moment(initDate, 'DD-MM-YYYY');
+    const today = moment();
+    return today.diff(init, 'days');
+  }
+
   return (
     <>
       <form>
@@ -37,7 +43,10 @@ function Calculator() {
 
         <div className="form-group">
           <label>initDate</label>
-          <input type="text" className="form-control" onChange={ (e) => { setInitDate(e.target.value); } } defaultValue={initDate} />
+          <div className="input-group">
+            <input type="text" className="form-control" onChange={ (e) => { setInitDate(e.target.value); } } defaultValue={initDate} />
+            <span className="input-group-text" id="basic-addon2">{daysToNow()} days</span>
+          </div>
         </div>
 
         <div className="form-group">
