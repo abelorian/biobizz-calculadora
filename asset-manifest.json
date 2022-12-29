@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/biobizz-calculadora/static/css/main.314222f7.css",
-    "main.js": "/biobizz-calculadora/static/js/main.65ea420f.js",
+    "main.js": "/biobizz-calculadora/static/js/main.8c6231bb.js",
     "static/js/787.54307446.chunk.js": "/biobizz-calculadora/static/js/787.54307446.chunk.js",
     "index.html": "/biobizz-calculadora/index.html",
     "main.314222f7.css.map": "/biobizz-calculadora/static/css/main.314222f7.css.map",
-    "main.65ea420f.js.map": "/biobizz-calculadora/static/js/main.65ea420f.js.map",
+    "main.8c6231bb.js.map": "/biobizz-calculadora/static/js/main.8c6231bb.js.map",
     "787.54307446.chunk.js.map": "/biobizz-calculadora/static/js/787.54307446.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.314222f7.css",
-    "static/js/main.65ea420f.js"
+    "static/js/main.8c6231bb.js"
   ]
 }
