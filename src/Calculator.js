@@ -2,9 +2,9 @@ import { useState } from 'react';
 import moment from 'moment';
 
 function Calculator() {
-  const [initDate, setInitDate] = useState('05-09-2022');
+  const [initDate, setInitDate] = useState('08-11-2022');
   const [cc, setCc] = useState(2000);
-  const [totalWeeks, setTotalWeeks] = useState(9);
+  const [totalWeeks, setTotalWeeks] = useState(12);
 
   const bioMix12 = [0, 2, 2, 2, 3, 3, 4, 4, 4, 4, 0, 0];
   const bioBloom12 = [0, 0, 1, 2, 2, 3, 3, 4, 4, 4, 0, 0];
